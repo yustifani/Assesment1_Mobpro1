@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string name="app_name">Assessment!</string>
+        <string name="app_name_mini_project">Drink Vending Machine</string>
+        <string name="kecil">Small</string>
+        <string name="besar">Large</string>
+        <string name="sedang">Medium</string>
+        <string name="input_invalid">Cannot be empty.</string>
+        <string name="tentang_aplikasi">About the Application</string>
+        <string name="identitas_foto">Photo Identity</string>
+        <string name="kembali">Back</string>
+        <string name="drink_calculator_description">"Drink Calculator" helps users calculate the price of drinks when ordering. Choose a drink, adjust the quantity with the left and right buttons, and select the size according to your preference. Perfect for hangouts or ordering at a cafe.</string>
+        <string name="Nim">Nim: 6706223124</string>
+        <string name="putri">Name: Yustifani Putri C</string>
+        <string name="total_price">Calculate Total Price</string>
+        <string name="bagikan">Share</string>
+        <string name="bagikan_result">Order Quantity: %1$s \nBeverage Size: %2$s \nMenu Name: %3$s\nUnit Menu Price: $%4$.2f\n\nTotal Price: %5$s</string>
+        <string name="jumlah">Amount</string>
+</resources>

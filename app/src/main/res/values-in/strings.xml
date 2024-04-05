@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string name="app_name">Assessment1</string>
+        <string name="app_name_mini_project">Mesin Penjual Minuman</string>
+        <string name="kecil">Kecil</string>
+        <string name="besar">Besar</string>
+        <string name="sedang">Sedang</string>
+        <string name="input_invalid">Tidak boleh kosong.</string>
+        <string name="tentang_aplikasi">Tentang Aplikasi</string>
+        <string name="identitas_foto">Identitas Foto</string>
+        <string name="kembali">Kembali</string>
+        <string name="drink_calculator_description">"Drink Calculator" membantu pengguna menghitung harga minuman saat memesan. Pilih minuman, atur jumlah pesanan dengan tombol kiri dan kanan, serta pilih ukuran sesuai selera. Cocok digunakan saat nongkrong atau memesan di kafe.</string>
+        <string name="Nim">Nim: 6706223124</string>
+        <string name="putri">Nama: Yustifani Putri C</string>
+        <string name="total_price">Hitung Total Harga</string>
+        <string name="bagikan">Bagikan</string>
+        <string name="bagikan_result">Jumlah pesanan: %1$s \nUkuran minuman: %2$s \n\Nama menu: %3$s\nHarga Satuan Menu: %4$.2f\n\nTotal harga: %5$s</string>
+        <string name="jumlah">Jumlah</string>
+</resources>
