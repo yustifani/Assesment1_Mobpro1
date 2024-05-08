@@ -7,5 +7,4 @@ data class Minuman(
     val nama: String,
     @DrawableRes val imageResId: Int,
     val harga: Float,
-    val totalHarga: Float? = 0f,
 )
