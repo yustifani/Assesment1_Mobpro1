@@ -65,11 +65,11 @@ import java.util.Locale
 @Composable
 fun VendingMachine(modifier: Modifier) {
         val data = listOf(
-            Minuman("Boba", R.drawable.boba, 10000f),
-            Minuman("Lemontea", R.drawable.lemontea, 7000f),
-            Minuman("Matcha", R.drawable.matcha, 15000f),
-            Minuman("Kopi", R.drawable.kopi, 5000f),
-            Minuman("Redvelvet", R.drawable.milktea, 8000f),
+            Minuman(1, "Boba", R.drawable.boba, 10000f),
+            Minuman(2,"Lemontea", R.drawable.lemontea, 7000f),
+            Minuman(3,"Matcha", R.drawable.matcha, 15000f),
+            Minuman(4,"Kopi", R.drawable.kopi, 5000f),
+            Minuman(5,"Redvelvet", R.drawable.milktea, 8000f),
         )
 
     var selectedMenu by rememberSaveable {
@@ -89,6 +89,8 @@ fun VendingMachine(modifier: Modifier) {
         stringResource(R.string.besar),
     )
 
+    val context = LocalContext.current
+
     var selectedSize by  rememberSaveable {
         mutableStateOf(radioOptions[0])
     }
@@ -96,8 +98,6 @@ fun VendingMachine(modifier: Modifier) {
     var totalHarga by rememberSaveable {
         mutableStateOf("")
     }
-
-    val context = LocalContext.current
 
         Column(
             modifier = modifier
