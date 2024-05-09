@@ -278,6 +278,15 @@ fun DeleteAction(delete: () -> Unit) {
                     delete()
                 }
             )
+            DropdownMenuItem(
+                text = {
+                    Text(text = stringResource(id = R.string.hapus))
+                },
+                onClick = {
+                    expanded = false
+                    delete()
+                }
+            )
         }
     }
 }

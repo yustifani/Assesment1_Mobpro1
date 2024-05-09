@@ -9,7 +9,7 @@
         <string name="tentang_aplikasi">About the app</string>
         <string name="identitas_foto">Photo identity</string>
         <string name="kembali">Back</string>
-        <string name="drink_calculator_description">"DrinkOrderer" helps users calculate the price of drinks when ordering and stores the order list. Choose a drink, enter the customer's name, set the quantity of the order, and select the size according to your preference. Suitable for use when hanging out or ordering at a cafe.</string>
+        <string name="drink_calculator_description">"DrinkOrderer" helps users calculate the price of drinks when ordering and stores the order list. Choose a drink, enter the customer\'s name, set the quantity of the order, and select the size according to your preference. Suitable for use when hanging out or ordering at a cafe.</string>
         <string name="Nim">NIM: 6706223124</string>
         <string name="putri">Name: Yustifani Putri C</string>
         <string name="total_price">Calculate total price</string>
@@ -17,7 +17,7 @@
         <string name="bagikan_result">Order quantity: %1$s \nDrink size: %2$s \n\Menu name: %3$s\nUnit Price Menu: $%4$.2f\n\nTotal price: %5$s</string>
         <string name="jumlah">Amount</string>
         <string name="nama_pembeli">Name</string>
-        <string name="list_kosong">No orders yet</string>
+        <string name="list_kosong">No drink orders yet</string>
         <string name="simpan">Save</string>
         <string name="edit_order">Edit order</string>
         <string name="invalid">Name and order quantity cannot be empty.</string>

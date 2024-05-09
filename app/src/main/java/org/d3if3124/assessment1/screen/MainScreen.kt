@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.LocalDrink
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -147,10 +148,11 @@ fun ScreenContent(modifier: Modifier, navController: NavHostController) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.empty_order),
+            Icon(
+                imageVector = Icons.Default.LocalDrink,
                 contentDescription = "",
-                Modifier.aspectRatio(2f)
+                tint = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.aspectRatio(3f)
             )
             Spacer(modifier = Modifier.size(8.dp))
             Text(

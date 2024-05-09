@@ -18,7 +18,7 @@
         <string name="bagikan_result">Jumlah pesanan: %1$s \nUkuran minuman: %2$s \n\Nama menu: %3$s\nHarga Satuan Menu: $%4$.2f\n\nTotal harga: %5$s</string>
         <string name="jumlah">Amount</string>
         <string name="nama_pembeli">Nama</string>
-        <string name="list_kosong">Belum ada order</string>
+        <string name="list_kosong">Belum ada pesanan minuman</string>
         <string name="simpan">Simpan</string>
         <string name="edit_order">Ubah order</string>
         <string name="invalid">Nama dan Jumlah order tidak boleh kosong.</string>
