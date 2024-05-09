@@ -1,3 +1,5 @@
+@file:Suppress("NAME_SHADOWING")
+
 package org.d3if3124.assessment1.screen
 
 import android.widget.Toast
@@ -36,6 +38,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -107,6 +110,16 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
     }
     var showDialog by remember { mutableStateOf(false) }
 
+    LaunchedEffect(true) {
+        if (id == null) return@LaunchedEffect
+        val data = viewModel.getOrder(id) ?: return@LaunchedEffect
+        selectedMenu = data.minuman
+        namaPembeli = data.namaPembeli
+        jumlah = data.jumlah.toString()
+        selectedSize = data.size
+        totalHarga = formatCurrency(data.totalHarga)
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -138,6 +151,8 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
 
                         if (id == null) {
                             viewModel.insert(namaPembeli, selectedMenu, jumlah.toInt(), selectedSize, parseCurrency(totalHarga))
+                        } else {
+                            viewModel.update(id, namaPembeli, selectedMenu, jumlah.toInt(), selectedSize, parseCurrency(totalHarga))
                         }
 
                         navController.popBackStack()
@@ -154,6 +169,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                             openDialog = showDialog,
                             onDismissRequest = { showDialog = false }) {
                             showDialog = false
+                            viewModel.delete(id)
                             navController.popBackStack()
                         }
                     }
@@ -361,9 +377,6 @@ fun FormOrder(
             label = {
                 Text(text = stringResource(R.string.nama_pembeli))
             },
-            placeholder = {
-                Text(text = "0")
-            },
             leadingIcon = {
                 Icon(imageVector = Icons.Default.Person, contentDescription = "")
             },
@@ -391,7 +404,7 @@ fun FormOrder(
             },
             keyboardOptions = KeyboardOptions.Default.copy(
                 keyboardType = KeyboardType.Number,
-                imeAction = ImeAction.Next
+                imeAction = ImeAction.Done
             ),
             singleLine = true,
             modifier = Modifier.fillMaxWidth()
