@@ -47,7 +47,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.d3if3124.assessment1.R
 import org.d3if3124.assessment1.model.DataMinuman
-import org.d3if3124.assessment1.model.Minuman
 import org.d3if3124.assessment1.model.Order
 import org.d3if3124.assessment1.navigation.Screen
 import org.d3if3124.assessment1.ui.theme.Assessment1Theme
@@ -58,7 +57,6 @@ import java.util.Locale
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -126,14 +124,16 @@ fun ScreenContent(modifier: Modifier, navController: NavHostController) {
             contentPadding = PaddingValues(bottom = 84.dp)
         ) {
             items(data) {
-                ListItem(order = it, onClick = {})
+                ListItem(order = it){
+                    navController.navigate(Screen.FormUbah.withId(it.id))
+                }
             }
         }
     }
 }
 
 @Composable
-fun ListItem(order: Order, onClick: () -> Unit, modifier: Modifier = Modifier) {
+fun ListItem(order: Order, modifier: Modifier = Modifier, onClick: () -> Unit) {
     Card(
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         modifier = modifier

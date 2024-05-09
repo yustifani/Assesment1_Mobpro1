@@ -20,7 +20,7 @@
     <string name="list_kosong">Belum ada order</string>
     <string name="simpan">Simpan</string>
     <string name="edit_order">Ubah order</string>
-    <string name="invalid">Judul dan isi order tidak boleh kosong.</string>
+    <string name="invalid">Nama dan Jumlah order tidak boleh kosong.</string>
     <string name="lainnya">Opsi lainnya</string>
     <string name="hapus">Hapus order</string>
     <string name="pesan_hapus">Hapus order ini?</string>

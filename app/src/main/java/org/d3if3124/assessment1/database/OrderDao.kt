@@ -17,4 +17,10 @@ interface OrderDao {
 
     @Query("SELECT * FROM `order` ORDER BY tanggal DESC")
     fun getOrder(): Flow<List<Order>>
+
+    @Query("SELECT * FROM `order` WHERE id = :id")
+    suspend fun getOrderById(id: Long): Order?
+
+    @Query("DELETE FROM `order` WHERE id = :id")
+    suspend fun deleteById(id: Long)
 }
