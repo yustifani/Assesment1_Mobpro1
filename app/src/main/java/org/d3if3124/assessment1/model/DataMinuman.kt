@@ -1,6 +1,5 @@
 package org.d3if3124.assessment1.model
 
-import androidx.compose.ui.res.stringResource
 import org.d3if3124.assessment1.R
 
 object DataMinuman {
