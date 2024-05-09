@@ -11,15 +11,16 @@ import org.d3if3124.assessment1.screen.AboutScreen
 import org.d3if3124.assessment1.screen.DetailScreen
 import org.d3if3124.assessment1.screen.KEY_ID_ORDER
 import org.d3if3124.assessment1.screen.MainScreen
+import org.d3if3124.assessment1.util.SettingsDataStore
 
 @Composable
-fun SetupNavGraph(navController: NavHostController = rememberNavController()) {
+fun SetupNavGraph(navController: NavHostController = rememberNavController(), showDarkMode: Boolean, dataStore: SettingsDataStore) {
     NavHost(
         navController = navController,
         startDestination =  Screen.Home.route
     ) {
         composable(route = Screen.Home.route) {
-            MainScreen(navController)
+            MainScreen(navController, showDarkMode, dataStore)
         }
         composable(route = Screen.About.route) {
             AboutScreen(navController)

@@ -18,11 +18,11 @@ class SettingsDataStore(private val context: Context) {
         private val IS_DARK_MODE = booleanPreferencesKey("is_dark_mode")
     }
 
-    val layoutFlow: Flow<Boolean> = context.dataStore.data.map { preferences ->
+    val darkModeFlow: Flow<Boolean> = context.dataStore.data.map { preferences ->
         preferences[IS_DARK_MODE] ?: true
     }
 
-    suspend fun saveLayout(isList: Boolean) {
+    suspend fun saveDarkMode(isList: Boolean) {
         context.dataStore.edit { preferences ->
             preferences[IS_DARK_MODE] = isList
         }

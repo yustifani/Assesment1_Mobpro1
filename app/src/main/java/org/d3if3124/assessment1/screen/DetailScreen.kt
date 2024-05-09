@@ -32,7 +32,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -336,9 +338,15 @@ fun FormOrder(
                 keyboardOptions = KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Next
                 ),
-                colors = ExposedDropdownMenuDefaults.textFieldColors(),
+                colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(
+                    unfocusedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    focusedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.primary,
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                ),
                 leadingIcon = {
-                    Icon(imageVector = Icons.Filled.LocalDrink, contentDescription = "")
+                    Icon(imageVector = Icons.Filled.LocalDrink, contentDescription = "",
+                        tint = MaterialTheme.colorScheme.primary)
                 },
             )
             ExposedDropdownMenu(
@@ -378,11 +386,20 @@ fun FormOrder(
                 Text(text = stringResource(R.string.nama_pembeli))
             },
             leadingIcon = {
-                Icon(imageVector = Icons.Default.Person, contentDescription = "")
+                Icon(imageVector = Icons.Default.Person, contentDescription = "",
+                    tint = MaterialTheme.colorScheme.primary)
             },
             keyboardOptions = KeyboardOptions.Default.copy(
                 capitalization = KeyboardCapitalization.Words,
                 imeAction = ImeAction.Next
+            ),
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                focusedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                focusedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                unfocusedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                unfocusedBorderColor = MaterialTheme.colorScheme.primary,
+                focusedBorderColor = MaterialTheme.colorScheme.primary,
             ),
             singleLine = true,
             modifier = Modifier.fillMaxWidth()
@@ -406,6 +423,14 @@ fun FormOrder(
                 keyboardType = KeyboardType.Number,
                 imeAction = ImeAction.Done
             ),
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                focusedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                focusedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                unfocusedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                unfocusedBorderColor = MaterialTheme.colorScheme.primary,
+                focusedBorderColor = MaterialTheme.colorScheme.primary,
+            ),
             singleLine = true,
             modifier = Modifier.fillMaxWidth()
         )
@@ -416,7 +441,7 @@ fun FormOrder(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
+                .border(1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(4.dp))
         ) {
             radioOptions.forEach { text ->
                 SizeOption(
@@ -463,10 +488,14 @@ fun SizeOption(label: String, isSelected: Boolean, modifier: Modifier) {
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        RadioButton(selected = isSelected, onClick = null)
+        RadioButton(selected = isSelected, onClick = null, colors = RadioButtonDefaults.colors(
+            selectedColor = MaterialTheme.colorScheme.inversePrimary,
+            unselectedColor = MaterialTheme.colorScheme.primary
+        ))
         Text(
             text = label,
             style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.padding(start = 8.dp)
         )
     }

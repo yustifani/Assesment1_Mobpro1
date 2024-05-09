@@ -2,7 +2,6 @@ package org.d3if3124.assessment1.screen
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -37,9 +36,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -53,12 +49,16 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.d3if3124.assessment1.R
 import org.d3if3124.assessment1.database.OrderDb
 import org.d3if3124.assessment1.model.DataMinuman
 import org.d3if3124.assessment1.model.Order
 import org.d3if3124.assessment1.navigation.Screen
 import org.d3if3124.assessment1.ui.theme.Assessment1Theme
+import org.d3if3124.assessment1.util.SettingsDataStore
 import org.d3if3124.assessment1.util.ViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -66,9 +66,11 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(navController: NavHostController) {
-    var showDarkMode by remember { mutableStateOf(false) }
-
+fun MainScreen(
+    navController: NavHostController,
+    showDarkMode: Boolean,
+    dataStore: SettingsDataStore
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -81,7 +83,11 @@ fun MainScreen(navController: NavHostController) {
                 ),
                 actions = {
 
-                    IconButton(onClick = { showDarkMode = !showDarkMode }) {
+                    IconButton(onClick = {
+                        CoroutineScope(Dispatchers.IO).launch {
+                            dataStore.saveDarkMode(!showDarkMode)
+                        }
+                    }) {
                         Icon(
                             painter = painterResource(
                                 if (showDarkMode) R.drawable.baseline_light_mode_24
@@ -137,17 +143,20 @@ fun ScreenContent(modifier: Modifier, navController: NavHostController) {
         Column(
             modifier = modifier
                 .fillMaxSize()
-                .padding(16.dp)
-            ,
+                .padding(16.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = R.drawable.empty_order), 
+                painter = painterResource(id = R.drawable.empty_order),
                 contentDescription = "",
-                Modifier.aspectRatio(2f))
+                Modifier.aspectRatio(2f)
+            )
             Spacer(modifier = Modifier.size(8.dp))
-            Text(text = stringResource(id = R.string.list_kosong), style = MaterialTheme.typography.titleLarge)
+            Text(
+                text = stringResource(id = R.string.list_kosong),
+                style = MaterialTheme.typography.titleLarge
+            )
         }
     } else {
         LazyColumn(
@@ -155,7 +164,7 @@ fun ScreenContent(modifier: Modifier, navController: NavHostController) {
             contentPadding = PaddingValues(bottom = 84.dp)
         ) {
             items(data) {
-                ListItem(order = it){
+                ListItem(order = it) {
                     navController.navigate(Screen.FormUbah.withId(it.id))
                 }
             }
@@ -178,8 +187,7 @@ fun ListItem(order: Order, modifier: Modifier = Modifier, onClick: () -> Unit) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .sizeIn(minHeight = 110.dp)
-            ,
+                .sizeIn(minHeight = 110.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Box(
@@ -226,7 +234,7 @@ fun ListItem(order: Order, modifier: Modifier = Modifier, onClick: () -> Unit) {
     }
 }
 
-private fun formatDate(date: Date) : String {
+private fun formatDate(date: Date): String {
     return SimpleDateFormat("dd MMMM yyyy", Locale("in", "ID")).format(date)
 }
 
@@ -234,8 +242,10 @@ private fun formatDate(date: Date) : String {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun ScreenPreview() {
+    val dataStore = SettingsDataStore(LocalContext.current)
+    val showDarkMode by dataStore.darkModeFlow.collectAsState(initial = false)
     Assessment1Theme {
-        MainScreen(rememberNavController())
+        MainScreen(rememberNavController(), showDarkMode, dataStore)
     }
 }
 
