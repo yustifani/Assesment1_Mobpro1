@@ -6,12 +6,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import org.d3if3124.assessment1.screen.AboutScreen
+import org.d3if3124.assessment1.screen.DetailScreen
 import org.d3if3124.assessment1.screen.MainScreen
-
-sealed class Screen(val route: String) {
-    data object Home: Screen("mainScreen")
-    data object About: Screen("aboutScreen")
-}
 
 @Composable
 fun SetupNavGraph(navController: NavHostController = rememberNavController()) {
@@ -24,6 +20,9 @@ fun SetupNavGraph(navController: NavHostController = rememberNavController()) {
         }
         composable(route = Screen.About.route) {
             AboutScreen(navController)
+        }
+        composable(route = Screen.FormBaru.route) {
+            DetailScreen(navController)
         }
     }
 }

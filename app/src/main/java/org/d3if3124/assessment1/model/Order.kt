@@ -14,5 +14,5 @@ data class Order(
     val jumlah: Int,
     @StringRes val size: Int,
     val totalHarga: Float,
-    val tanggal: Date?
+    val tanggal: Date,
 )
