@@ -164,7 +164,7 @@ fun ListItem(order: Order, modifier: Modifier = Modifier, onClick: () -> Unit) {
 
             ) {
                 Image(
-                    painter = painterResource(DataMinuman.listMinuman[order.minuman - 1].imageResId),
+                    painter = painterResource(DataMinuman.listMinuman[order.minuman].imageResId),
                     contentDescription = null,
                     alignment = Alignment.TopCenter,
                     contentScale = ContentScale.Crop

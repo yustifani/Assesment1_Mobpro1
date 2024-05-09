@@ -55,11 +55,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.d3if3124.assessment1.R
+import org.d3if3124.assessment1.database.OrderDb
 import org.d3if3124.assessment1.model.DataMinuman
 import org.d3if3124.assessment1.model.Minuman
+import org.d3if3124.assessment1.util.ViewModelFactory
 import java.text.NumberFormat
 import java.util.Currency
 import java.util.Locale
@@ -69,11 +72,16 @@ const val KEY_ID_ORDER = "idOrder"
 @Composable
 fun DetailScreen(navController: NavHostController, id: Long? = null) {
 
+    val context = LocalContext.current
+    val db = OrderDb.getInstance(context)
+    val factory = ViewModelFactory(db.dao)
+    val viewModel: DetailViewModel = viewModel(factory = factory)
+
     val data = DataMinuman.listMinuman
     val radioOptions = listOf(
-        stringResource(R.string.kecil),
-        stringResource(R.string.sedang),
-        stringResource(R.string.besar),
+        R.string.kecil,
+        R.string.sedang,
+        R.string.besar,
     )
 
     var selectedMenu by rememberSaveable {
@@ -86,7 +94,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
         mutableStateOf("")
     }
     var selectedSize by rememberSaveable {
-        mutableStateOf(radioOptions[0])
+        mutableIntStateOf(radioOptions[0])
     }
 
     var error by rememberSaveable {
@@ -98,8 +106,6 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
         mutableStateOf("")
     }
     var showDialog by remember { mutableStateOf(false) }
-
-    val context = LocalContext.current
 
     Scaffold(
         topBar = {
@@ -128,6 +134,10 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                         if (jumlah == "" || jumlah == "0" || namaPembeli == "") {
                             Toast.makeText(context, R.string.invalid, Toast.LENGTH_LONG).show()
                             return@IconButton
+                        }
+
+                        if (id == null) {
+                            viewModel.insert(namaPembeli, selectedMenu, jumlah.toInt(), selectedSize, parseCurrency(totalHarga))
                         }
 
                         navController.popBackStack()
@@ -165,7 +175,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                 totalHarga = formatCurrency(
                     getHargaBySize(
                         data[selectedMenu].harga,
-                        selectedSize
+                        context.getString(selectedSize)
                     ) * jumlah.toFloat()
                 )
             },
@@ -182,7 +192,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                 totalHarga = formatCurrency(
                     getHargaBySize(
                         data[selectedMenu].harga,
-                        selectedSize
+                        context.getString(selectedSize)
                     ) * jumlah.toFloat()
                 )
             },
@@ -190,17 +200,16 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
             onNamaPembeliChange = {
                 namaPembeli = it
 
-                error = (jumlah == "0" || jumlah == "" || namaPembeli == "")
+                error = (jumlah == "0" || jumlah == "")
                 if (error) {
                     jumlah = ""
-                    namaPembeli = ""
                     totalHarga = ""
                     return@FormOrder
                 }
                 totalHarga = formatCurrency(
                     getHargaBySize(
                         data[selectedMenu].harga,
-                        selectedSize
+                        context.getString(selectedSize)
                     ) * jumlah.toFloat()
                 )
             },
@@ -217,7 +226,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                 totalHarga = formatCurrency(
                     getHargaBySize(
                         data[selectedMenu].harga,
-                        selectedSize
+                        context.getString(selectedSize)
                     ) * jumlah.toFloat()
                 )
             },
@@ -262,9 +271,9 @@ fun FormOrder(
     selectedMenu: Int, onMenuChange: (Int) -> Unit,
     namaPembeli: String, onNamaPembeliChange: (String) -> Unit,
     jumlah: String, onJumlahChange: (String) -> Unit,
-    selectedSize: String, onSizeChange: (String) -> Unit,
+    selectedSize: Int, onSizeChange: (Int) -> Unit,
     totalHarga: String,
-    radioOptions: List<String>,
+    radioOptions: List<Int>,
     data: List<Minuman>,
     modifier: Modifier
 ) {
@@ -398,7 +407,7 @@ fun FormOrder(
         ) {
             radioOptions.forEach { text ->
                 SizeOption(
-                    label = text,
+                    label = stringResource(id = text),
                     isSelected = selectedSize == text,
                     modifier = Modifier
                         .selectable(
@@ -460,4 +469,11 @@ fun formatCurrency(amount: Float): String {
     val formatter = NumberFormat.getCurrencyInstance(Locale("IND", "ID"))
     formatter.currency = Currency.getInstance("IDR")
     return formatter.format(amount)
+}
+
+fun parseCurrency(currencyString: String): Float {
+    val formatter = NumberFormat.getCurrencyInstance(Locale("id", "ID")) // Use "id" instead of "IND"
+    formatter.currency = Currency.getInstance("IDR")
+    val parsedNumber = formatter.parse(currencyString)
+    return parsedNumber?.toFloat() ?: 0f
 }
