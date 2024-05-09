@@ -192,7 +192,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                 totalHarga = formatCurrency(
                     getHargaBySize(
                         data[selectedMenu].harga,
-                        context.getString(selectedSize)
+                        selectedSize
                     ) * jumlah.toFloat()
                 )
             },
@@ -209,7 +209,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                 totalHarga = formatCurrency(
                     getHargaBySize(
                         data[selectedMenu].harga,
-                        context.getString(selectedSize)
+                        selectedSize
                     ) * jumlah.toFloat()
                 )
             },
@@ -226,7 +226,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                 totalHarga = formatCurrency(
                     getHargaBySize(
                         data[selectedMenu].harga,
-                        context.getString(selectedSize)
+                        selectedSize
                     ) * jumlah.toFloat()
                 )
             },
@@ -243,7 +243,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                 totalHarga = formatCurrency(
                     getHargaBySize(
                         data[selectedMenu].harga,
-                        context.getString(selectedSize)
+                        selectedSize
                     ) * jumlah.toFloat()
                 )
             },
@@ -278,15 +278,7 @@ fun DeleteAction(delete: () -> Unit) {
                     delete()
                 }
             )
-            DropdownMenuItem(
-                text = {
-                    Text(text = stringResource(id = R.string.hapus))
-                },
-                onClick = {
-                    expanded = false
-                    delete()
-                }
-            )
+
         }
     }
 }
@@ -481,11 +473,11 @@ fun FormOrder(
 }
 
 
-fun getHargaBySize(amount: Float, size: String): Float {
+fun getHargaBySize(amount: Float, size: Int): Float {
     return when (size) {
-        "Kecil" -> amount
-        "Sedang" -> amount + 2000f
-        "Besar" -> amount + 5000f
+        R.string.kecil -> amount
+        R.string.sedang -> amount + 2000f
+        R.string.besar -> amount + 5000f
         else -> amount
     }
 }
