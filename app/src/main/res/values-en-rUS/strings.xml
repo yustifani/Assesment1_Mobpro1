@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
         <string name="app_name">Assessment!</string>
-        <string name="app_name_mini_project">Drink Vending Machine</string>
+        <string name="app_name_mini_project">DrinkOrderer</string>
         <string name="kecil">Small</string>
         <string name="besar">Large</string>
         <string name="sedang">Medium</string>
         <string name="input_invalid">Cannot be empty.</string>
-        <string name="tentang_aplikasi">About the Application</string>
-        <string name="identitas_foto">Photo Identity</string>
+        <string name="tentang_aplikasi">About the app</string>
+        <string name="identitas_foto">Photo identity</string>
         <string name="kembali">Back</string>
-        <string name="drink_calculator_description">"Drink Calculator" helps users calculate the price of drinks when ordering. Choose a drink, adjust the quantity with the left and right buttons, and select the size according to your preference. Perfect for hangouts or ordering at a cafe.</string>
-        <string name="Nim">Nim: 6706223124</string>
+        <string name="drink_calculator_description">"DrinkOrderer" helps users calculate the price of drinks when ordering and stores the order list. Choose a drink, enter the customer's name, set the quantity of the order, and select the size according to your preference. Suitable for use when hanging out or ordering at a cafe.</string>
+        <string name="Nim">NIM: 6706223124</string>
         <string name="putri">Name: Yustifani Putri C</string>
-        <string name="total_price">Calculate Total Price</string>
+        <string name="total_price">Calculate total price</string>
         <string name="bagikan">Share</string>
-        <string name="bagikan_result">Order Quantity: %1$s \nBeverage Size: %2$s \nMenu Name: %3$s\nUnit Menu Price: $%4$.2f\n\nTotal Price: %5$s</string>
+        <string name="bagikan_result">Order quantity: %1$s \nDrink size: %2$s \n\Menu name: %3$s\nUnit Price Menu: $%4$.2f\n\nTotal price: %5$s</string>
         <string name="jumlah">Amount</string>
+        <string name="nama_pembeli">Name</string>
+        <string name="list_kosong">No orders yet</string>
+        <string name="simpan">Save</string>
+        <string name="edit_order">Edit order</string>
+        <string name="invalid">Name and order quantity cannot be empty.</string>
+        <string name="lainnya">Other options</string>
+        <string name="hapus">Delete order</string>
+        <string name="pesan_hapus">Delete this order?</string>
+        <string name="tombol_hapus">Delete</string>
+        <string name="tombol_batal">Cancel</string>
+        <string name="tambah_order">Add order</string>
+        <string name="menuDropdown">Drink: %1$s, Price: Rp.%2$s</string>
+        <string name="status">Status: %1$s</string>
+        <string name="tanggal">Date: %1$s</string>
+        <string name="light">Light</string>
+        <string name="dark">Dark</string>
 </resources>
