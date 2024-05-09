@@ -65,7 +65,7 @@ fun AboutScreen(navController: NavHostController) {
                 .padding(padding)
                 .padding(16.dp)
                 .background(
-                    MaterialTheme.colorScheme.primaryContainer,
+                    MaterialTheme.colorScheme.primary,
                     RoundedCornerShape(10.dp)
                 )
                 .fillMaxWidth()
@@ -80,11 +80,11 @@ fun AboutScreen(navController: NavHostController) {
                     .clip(CircleShape)
                     .align(Alignment.CenterHorizontally), contentScale = ContentScale.Crop)
             Spacer(modifier = Modifier.size(15.dp))
-            Text(text = stringResource(R.string.putri), style = MaterialTheme.typography.titleMedium, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
+            Text(text = stringResource(R.string.putri), style = MaterialTheme.typography.titleMedium, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onPrimary)
             Spacer(modifier = Modifier.size(15.dp))
-            Text(text = stringResource(R.string.Nim), style = MaterialTheme.typography.titleMedium, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
+            Text(text = stringResource(R.string.Nim), style = MaterialTheme.typography.titleMedium, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onPrimary)
             Spacer(modifier = Modifier.size(15.dp))
-            Text(text = stringResource(id = R.string.drink_calculator_description))
+            Text(text = stringResource(id = R.string.drink_calculator_description), color = MaterialTheme.colorScheme.onPrimary)
         }
     }
 }

@@ -8,7 +8,7 @@
     <string name="tentang_aplikasi">Tentang aplikasi</string>
     <string name="identitas_foto">Identitas foto</string>
     <string name="kembali">Kembali</string>
-    <string name="drink_calculator_description">"Drink Vending Machine" membantu pengguna menghitung harga minuman saat memesan. Pilih minuman, atur jumlah pesanan dengan tombol kiri dan kanan, serta pilih ukuran sesuai selera. Cocok digunakan saat nongkrong atau memesan di kafe.</string>
+    <string name="drink_calculator_description">"Drink Vending Machine" membantu pengguna menghitung harga minuman saat memesan dan menyimpan list order. Pilih minuman, masukan nama pemesan, atur jumlah pesanan, serta pilih ukuran sesuai selera. Cocok digunakan saat nongkrong atau memesan di kafe.</string>
     <string name="Nim">Nim: 6706223124</string>
     <string name="putri">Nama: Yustifani Putri C</string>
     <string name="total_price">Hitung total harga</string>
@@ -16,7 +16,6 @@
     <string name="bagikan_result">Jumlah pesanan: %1$s \nUkuran minuman: %2$s \n\Nama menu: %3$s\nHarga Satuan Menu: %4$.2f\n\nTotal harga: %5$s</string>
     <string name="jumlah">Amount</string>
     <string name="nama_pembeli">Name</string>
-
     <string name="list_kosong">Belum ada order</string>
     <string name="simpan">Simpan</string>
     <string name="edit_order">Ubah order</string>
@@ -30,4 +29,6 @@
     <string name="menuDropdown">Minuman : %1$s, Harga : Rp.%2$s</string>
     <string name="status">Status: %1$s</string>
     <string name="tanggal">Tanggal: %1$s</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
 </resources>
